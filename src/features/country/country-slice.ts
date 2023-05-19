@@ -3,10 +3,12 @@ import { ICountryResponse } from "../../model";
 
 export interface ICountryState {
   apiResponse: ICountryResponse | null;
+  search: string | null;
 }
 
 const initialState: ICountryState = {
   apiResponse: null,
+  search: null,
 } as ICountryState;
 
 export const countrySlice = createSlice({
@@ -16,9 +18,12 @@ export const countrySlice = createSlice({
     setCountryData: (state, action: PayloadAction<ICountryResponse>) => {
       state.apiResponse = action.payload;
     },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
   },
 });
 
-export const { setCountryData } = countrySlice.actions;
+export const { setCountryData, setSearch } = countrySlice.actions;
 
 export default countrySlice.reducer;

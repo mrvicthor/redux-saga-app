@@ -19,3 +19,8 @@ export interface ICurrency {
 export interface ICountryResponse {
   apiResponse: ICountry[];
 }
+
+export interface IHeader {
+  onToggle: () => void;
+  darkTheme: boolean;
+}
