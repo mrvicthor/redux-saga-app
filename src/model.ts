@@ -1,13 +1,14 @@
 export interface ICountry {
-  name: string;
+  name: any;
+  borders: string[];
+  capital: string[];
+  currencies: ICurrency[];
+  flags: any;
+  languages: any[];
+  population: number;
   region: string;
   subregion: string;
   topLevelDomain: string[];
-  population: number;
-  borders: string[];
-  currencies: ICurrency[];
-  languages: any[];
-  flag: string;
 }
 
 export interface ICurrency {
