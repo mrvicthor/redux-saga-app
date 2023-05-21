@@ -5,7 +5,7 @@ import { countrySelector } from "../../features/country/country-selector";
 import { themeSelector } from "../../features/theme/theme-selector";
 import {
   showRegionSelector,
-  regionSelector,
+  // regionSelector,
 } from "../../features/region/region-selector";
 import {
   setShowRegion,
@@ -14,11 +14,11 @@ import {
 import { ICountry } from "../../model";
 const Home = () => {
   const dispatch = useDispatch();
-  const countries = useSelector(countrySelector);
+  const countries = useSelector(countrySelector) ?? [];
   console.log(countries);
   const darkTheme = useSelector(themeSelector);
   const showRegion = useSelector(showRegionSelector);
-  const selectedRegion = useSelector(regionSelector);
+  // const selectedRegion = useSelector(regionSelector);
   const regions = [
     { id: 1, title: "Africa", value: "Africa" },
     {
@@ -103,39 +103,44 @@ const Home = () => {
       <div
         className={`container mt-8 grid justify-center gap-y-[2.5rem] md:grid-cols-2 md:gap-x-[4.6875rem] md:gap-y-[4.6875rem] lg:grid-cols-4 lg:justify-between`}
       >
-        {countries?.map((country: ICountry, i: number) => (
-          <div
-            key={`${country.name} + ${i}`}
-            className={`${
-              darkTheme
-                ? "bg-[#2B3844] text-[#f1f1f1] shadow-[0px_2px_9px_rgba(0,0,0,0.0532439)]"
-                : "bg-white text-[#111517] shadow-[0px_2px_4px_rgba(0,0,0,0.0562443)]"
-            } w-[16.5rem] rounded-[5px] pb-[2.875rem] md:w-full`}
-          >
-            <div className="h-[10rem] w-full">
-              <img
-                src={country.flags.svg}
-                alt={country.name}
-                className="block w-full h-full object-cover rounded-t-[5px]"
-              />
-            </div>
-            <article className="pt-6 px-6">
-              <h2 className="text-lg font-extrabold">{country.name.common}</h2>
-              <div className="space-y-2 mt-4">
-                <p className="text-sm font-semibold leading-4">
-                  Population:{" "}
-                  <span className="opacity-60">{country.population}</span>
-                </p>
-                <p className="text-sm font-semibold leading-4">
-                  Region: <span className="opacity-60">{country.region}</span>
-                </p>
-                <p className="text-sm font-semibold leading-4">
-                  Capital: <span className="opacity-60">{country.capital}</span>
-                </p>
+        {(countries as unknown as ICountry[]).map(
+          (country: ICountry, i: number) => (
+            <div
+              key={`${country.name} + ${i}`}
+              className={`${
+                darkTheme
+                  ? "bg-[#2B3844] text-[#f1f1f1] shadow-[0px_2px_9px_rgba(0,0,0,0.0532439)]"
+                  : "bg-white text-[#111517] shadow-[0px_2px_4px_rgba(0,0,0,0.0562443)]"
+              } w-[16.5rem] rounded-[5px] pb-[2.875rem] md:w-full`}
+            >
+              <div className="h-[10rem] w-full">
+                <img
+                  src={country.flags.svg}
+                  alt={country.name}
+                  className="block w-full h-full object-cover rounded-t-[5px]"
+                />
               </div>
-            </article>
-          </div>
-        ))}
+              <article className="pt-6 px-6">
+                <h2 className="text-lg font-extrabold">
+                  {country.name.common}
+                </h2>
+                <div className="space-y-2 mt-4">
+                  <p className="text-sm font-semibold leading-4">
+                    Population:{" "}
+                    <span className="opacity-60">{country.population}</span>
+                  </p>
+                  <p className="text-sm font-semibold leading-4">
+                    Region: <span className="opacity-60">{country.region}</span>
+                  </p>
+                  <p className="text-sm font-semibold leading-4">
+                    Capital:{" "}
+                    <span className="opacity-60">{country.capital}</span>
+                  </p>
+                </div>
+              </article>
+            </div>
+          )
+        )}
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ export interface ICountryState {
 const initialState: ICountryState = {
   apiResponse: null,
   search: null,
-} as ICountryState;
+} as unknown as ICountryState;
 
 export const countrySlice = createSlice({
   name: "country",
