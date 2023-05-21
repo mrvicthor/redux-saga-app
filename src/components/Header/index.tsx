@@ -12,7 +12,7 @@ const Header = ({ onToggle, darkTheme }: IHeader) => {
     >
       <div className="container flex justify-between items-center py-[1.875rem] md:py-6">
         <h1 className="font-extrabold text-[0.875rem] leading-5 md:text-2xl">
-          Where in the world
+          Where in the world?
         </h1>
         <button
           onClick={onToggle}
