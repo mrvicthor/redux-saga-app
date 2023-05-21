@@ -9,12 +9,11 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   const toggleTheme = () => {
-    console.log(darkTheme);
     dispatch(setDarkTheme());
   };
 
   return (
-    <div className={`${darkTheme ? "bg-[#202C36]" : "bg-[#F2F2F2]"}`}>
+    <div className={`${darkTheme ? "bg-[#202C36]" : "bg-white"}`}>
       <Header onToggle={toggleTheme} darkTheme={darkTheme} />
       <Outlet />
     </div>

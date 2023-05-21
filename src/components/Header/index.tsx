@@ -6,12 +6,12 @@ const Header = ({ onToggle, darkTheme }: IHeader) => {
     <header
       className={`${
         darkTheme
-          ? "bg-[#2B3844] text-[#f1f1f1]"
-          : "bg-[#f1f1f1] text-[#111517]"
+          ? "bg-[#2B3844] text-[#f1f1f1] shadow-[0px_2px_9px_rgba(0,0,0,0.0532439)]"
+          : "bg-white text-[#111517] shadow-[0px_2px_4px_rgba(0,0,0,0.0562443)]"
       } h-[5rem]`}
     >
-      <div className="px-4 flex justify-between items-center py-[1.875rem]">
-        <h1 className="font-extrabold text-[0.875rem] leading-5">
+      <div className="px-4 flex justify-between items-center py-[1.875rem] md:px-20 md:py-6">
+        <h1 className="font-extrabold text-[0.875rem] leading-5 md:text-2xl">
           Where in the world
         </h1>
         <button

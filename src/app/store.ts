@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import countryReducer from "../features/country/country-slice";
 import apiReducer from "../features/api/api-slice";
+import regionReducer from "../features/region/region-slice";
 import themeReducer from "../features/theme/theme-slice";
 import createSagaMiddleware from "redux-saga";
 import countrySaga from "../sagas/country.saga";
@@ -12,6 +13,7 @@ const store = configureStore({
   reducer: {
     api: apiReducer,
     country: countryReducer,
+    region: regionReducer,
     theme: themeReducer,
   },
   middleware: (getDM) => getDM().concat(sagaMiddleware),
