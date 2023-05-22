@@ -1,4 +1,4 @@
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { IHeader } from "../../model";
 
 const Header = ({ onToggle, darkTheme }: IHeader) => {
@@ -18,7 +18,7 @@ const Header = ({ onToggle, darkTheme }: IHeader) => {
           onClick={onToggle}
           className="flex items-center gap-x-2 border-none bg-none outline-none cursor-pointer"
         >
-          <FaMoon color={`${darkTheme ? "#f1f1f1" : "#111517"}`} />{" "}
+          {darkTheme ? <FaSun color="#f1f1f1" /> : <FaMoon color="#111517" />}
           {darkTheme ? "Light" : "Dark"} Mode
         </button>
       </div>
