@@ -5,14 +5,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { themeSelector } from "../../features/theme/theme-selector";
 import { setShowRegion } from "../../features/region/region-slice";
 import { showRegionSelector } from "../../features/region/region-selector";
+import { setSearch } from "../../features/country/country-slice";
+import { searchSelector } from "../../features/country/country-selector";
+import { ChangeEvent } from "react";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const darkTheme = useSelector(themeSelector);
   const showRegion = useSelector(showRegionSelector);
+  const searchQuery = useSelector(searchSelector) ?? "";
 
   const handleShowRegion = () => {
     dispatch(setShowRegion());
+  };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearch(e.target.value));
   };
 
   return (
@@ -31,7 +39,9 @@ const SearchBar = () => {
         <input
           type="text"
           className="bg-transparent outline-none w-full"
+          value={searchQuery}
           placeholder="Search for a country..."
+          onChange={handleSearch}
         />
       </div>
       <div className="space-y-1">

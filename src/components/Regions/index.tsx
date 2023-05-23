@@ -13,7 +13,7 @@ const Regions = ({ handleShowRegion }: IRegion) => {
     {
       id: 2,
       title: "America",
-      value: "America",
+      value: "Americas",
     },
     { id: 3, title: "Asia", value: "Asia" },
     { id: 4, title: "Europe", value: "Europe" },

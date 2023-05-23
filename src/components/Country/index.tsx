@@ -7,6 +7,7 @@ interface CountryProps {
 }
 const Country = ({ country }: CountryProps) => {
   const darkTheme = useSelector(themeSelector);
+
   return (
     <div
       className={`${
@@ -18,7 +19,7 @@ const Country = ({ country }: CountryProps) => {
       <div className="h-[10rem] w-full">
         <img
           src={country.flags.svg}
-          alt={country.name}
+          alt={country.name.common}
           className="block w-full h-full object-cover rounded-t-[5px]"
         />
       </div>
