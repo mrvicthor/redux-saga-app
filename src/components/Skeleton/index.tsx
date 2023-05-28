@@ -1,4 +1,3 @@
-import reactLogo from "../../assets/react.svg";
 import { useSelector } from "react-redux";
 import { themeSelector } from "../../features/theme/theme-selector";
 
@@ -16,7 +15,6 @@ const Skeleton = () => {
       <div className="h-[10rem] w-full skeleton "></div>
       <article className="pt-6 px-6">
         <div className="skeleton skeleton-title" />
-        {/* <h2 className="text-lg font-extrabold">{country.name.common}</h2> */}
         <div className="space-y-2 mt-4">
           <div className="flex justify-between">
             <div className="skeleton skeleton-text" />
@@ -30,15 +28,6 @@ const Skeleton = () => {
             <div className="skeleton skeleton-text" />
             <div className="skeleton skeleton-text" />
           </div>
-          {/* <p className="text-sm font-semibold leading-4">
-          Population: <span className="opacity-60">{country.population}</span>
-        </p> */}
-          {/* <p className="text-sm font-semibold leading-4">
-          Region: <span className="opacity-60">{country.region}</span>
-        </p> */}
-          {/* <p className="text-sm font-semibold leading-4">
-          Capital: <span className="opacity-60">{country.capital}</span>
-        </p> */}
         </div>
       </article>
     </div>
