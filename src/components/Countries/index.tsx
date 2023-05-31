@@ -4,6 +4,7 @@ import {
   countrySelector,
   searchSelector,
 } from "../../features/country/country-selector";
+import { paginationSelector } from "../../features/pagination/pagination-selector";
 import { ICountry } from "../../model";
 import { regionSelector } from "../../features/region/region-selector";
 
@@ -11,6 +12,11 @@ const Countries = () => {
   const countries = useSelector(countrySelector) ?? [];
   const searchQuery = useSelector(searchSelector) ?? "";
   const region = useSelector(regionSelector) ?? "";
+  const { totalResults, currentPage, countriesPerPage } =
+    useSelector(paginationSelector);
+  const lastIndex = currentPage * countriesPerPage;
+  const firstIndex = lastIndex - countriesPerPage;
+  console.log(totalResults, firstIndex, lastIndex);
   console.log(countries);
 
   // eslint-disable-next-line prefer-const
@@ -48,15 +54,18 @@ const Countries = () => {
       </div>
     );
   }
+
+  const currentCountries = (filteredCountries as unknown as ICountry[]).slice(
+    firstIndex,
+    lastIndex
+  );
   return (
     <div
       className={`container mt-8 grid justify-center gap-y-[2.5rem] md:grid-cols-2 md:gap-x-[4.6875rem] md:gap-y-[4.6875rem] lg:grid-cols-4 lg:justify-between`}
     >
-      {(filteredCountries as unknown as ICountry[]).map(
-        (country: ICountry, i: number) => (
-          <Country country={country} key={i} />
-        )
-      )}
+      {currentCountries.map((country: ICountry, i: number) => (
+        <Country country={country} key={i} />
+      ))}
     </div>
   );
 };
