@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { Country, Skeleton } from "..";
+import { useAppDispatch } from "../../app/store";
+import { Country, Pagination, Skeleton } from "..";
 import {
   countrySelector,
   searchSelector,
@@ -7,8 +8,9 @@ import {
 import { paginationSelector } from "../../features/pagination/pagination-selector";
 import { ICountry } from "../../model";
 import { regionSelector } from "../../features/region/region-selector";
-
+import { setTotalResults } from "../../features/pagination/pagination-slice";
 const Countries = () => {
+  const dispatch = useAppDispatch();
   const countries = useSelector(countrySelector) ?? [];
   const searchQuery = useSelector(searchSelector) ?? "";
   const region = useSelector(regionSelector) ?? "";
@@ -25,11 +27,17 @@ const Countries = () => {
     filteredCountries = (filteredCountries as ICountry[]).filter(
       (country) => country.region === region
     );
+    dispatch(
+      setTotalResults((filteredCountries as unknown as ICountry[]).length)
+    );
   }
 
   if (searchQuery) {
     filteredCountries = (filteredCountries as ICountry[]).filter((country) =>
       country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    dispatch(
+      setTotalResults((filteredCountries as unknown as ICountry[]).length)
     );
   }
 
@@ -66,6 +74,8 @@ const Countries = () => {
       {currentCountries.map((country: ICountry, i: number) => (
         <Country country={country} key={i} />
       ))}
+
+      <Pagination />
     </div>
   );
 };

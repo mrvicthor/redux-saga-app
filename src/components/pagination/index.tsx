@@ -1,21 +1,25 @@
 import { useSelector, useDispatch } from "react-redux";
-import { paginationSelector } from "../../features/pagination/pagination-selector";
+import {
+  paginationSelector,
+  totalPagesSelector,
+} from "../../features/pagination/pagination-selector";
 import { themeSelector } from "../../features/theme/theme-selector";
 import { setCurrentPage } from "../../features/pagination/pagination-slice";
+import { useAppSelector } from "../../app/store";
 
 const Pagination = () => {
   const dispatch = useDispatch();
   const darkTheme = useSelector(themeSelector);
-  const { totalResults, countriesPerPage } = useSelector(paginationSelector);
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalResults / countriesPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  //   const { totalResults, countriesPerPage } = useSelector(paginationSelector);
+  const pageNumbers = useAppSelector(totalPagesSelector);
+  //   for (let i = 1; i <= Math.ceil(totalResults / countriesPerPage); i++) {
+  //     pageNumbers.push(i);
+  //   }
 
-  console.log(pageNumbers);
+  console.log(pageNumbers, "page numbers");
   return (
     <ul className="mt-6 flex justify-center gap-3">
-      {pageNumbers.map((p) => (
+      {pageNumbers?.map((p) => (
         <li
           onClick={() => {
             console.log("Pagination clicked", p);

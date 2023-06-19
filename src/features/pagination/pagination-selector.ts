@@ -15,3 +15,13 @@ export const lastIndexSelector = createSelector(
   (state: RootState) => state.pagination.indexOfLastCountry,
   (lastIndex) => lastIndex
 );
+
+export const totalPagesSelector = createSelector(
+  (state: RootState) => state.pagination.totalPages,
+  (totalPages) => totalPages
+);
+
+export const totalResultsSelector = createSelector(
+  (state: RootState) => state.pagination.totalResults,
+  (totalResults) => totalResults
+);

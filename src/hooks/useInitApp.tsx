@@ -6,6 +6,7 @@ import { countrySelector } from "../features/country/country-selector";
 const UseInitApp = () => {
   const dispatch = useAppDispatch();
   const countryData = useAppSelector(countrySelector);
+
   useEffect(() => {
     if (!countryData) {
       dispatch(fetching());

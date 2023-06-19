@@ -1,4 +1,4 @@
-import { Countries, Pagination, SearchBar } from "../../components";
+import { Countries, SearchBar } from "../../components";
 import { useSelector } from "react-redux";
 import { themeSelector } from "../../features/theme/theme-selector";
 
@@ -13,7 +13,6 @@ const Home = () => {
     >
       <SearchBar />
       <Countries />
-      <Pagination />
     </section>
   );
 };

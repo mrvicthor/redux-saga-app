@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface IPaginationState {
   currentPage: number;
   countriesPerPage: number;
-  totalPages: number;
+  totalPages: number[];
   totalResults: number;
   indexOfFirstCountry: number | null;
   indexOfLastCountry: number | null;
@@ -12,7 +12,7 @@ export interface IPaginationState {
 const initialState: IPaginationState = {
   currentPage: 1,
   countriesPerPage: 12,
-  totalPages: 0,
+  totalPages: [],
   totalResults: 0,
   indexOfFirstCountry: null,
   indexOfLastCountry: null,
@@ -26,7 +26,15 @@ export const paginationSlice = createSlice({
       state.totalResults = action.payload ?? 0;
     },
     setTotalPages: (state) => {
-      state.totalPages = state.totalResults / state.countriesPerPage;
+      for (
+        let i = 1;
+        i < Math.ceil(state.totalResults / state.countriesPerPage);
+        i++
+      ) {
+        state.totalPages = [...state.totalPages, i];
+        // (state.totalPages as number[]).push(i);
+        // console.log("running");
+      }
     },
     setIndexOfFirstCountry: (state) => {
       if (state.indexOfLastCountry) {
@@ -38,14 +46,21 @@ export const paginationSlice = createSlice({
       state.indexOfLastCountry = state.currentPage * state.countriesPerPage;
     },
     setNextPage: (state) => {
-      if (state.currentPage === state.totalPages) {
+      if (
+        state.currentPage ===
+        (state.totalPages as number[])[
+          (state.totalPages as number[]).length - 1
+        ]
+      ) {
         state.currentPage = 1;
       }
       state.countriesPerPage = state.currentPage + 1;
     },
     setPreviousPage: (state) => {
       if (state.currentPage === 1) {
-        state.currentPage = state.totalPages;
+        state.currentPage = (state.totalPages as number[])[
+          (state.totalPages as number[]).length - 1
+        ];
       }
       state.currentPage = state.currentPage - 1;
     },
