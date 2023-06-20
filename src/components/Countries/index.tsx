@@ -8,7 +8,10 @@ import {
 import { paginationSelector } from "../../features/pagination/pagination-selector";
 import { ICountry } from "../../model";
 import { regionSelector } from "../../features/region/region-selector";
-import { setTotalResults } from "../../features/pagination/pagination-slice";
+import {
+  setTotalResults,
+  setTotalPages,
+} from "../../features/pagination/pagination-slice";
 const Countries = () => {
   const dispatch = useAppDispatch();
   const countries = useSelector(countrySelector) ?? [];
@@ -30,6 +33,7 @@ const Countries = () => {
     dispatch(
       setTotalResults((filteredCountries as unknown as ICountry[]).length)
     );
+    console.log(totalResults, "total countries");
   }
 
   if (searchQuery) {
@@ -39,6 +43,7 @@ const Countries = () => {
     dispatch(
       setTotalResults((filteredCountries as unknown as ICountry[]).length)
     );
+    console.log(totalResults, "total countries");
   }
 
   if (searchQuery !== "" && !(filteredCountries as ICountry[]).length) {
@@ -68,15 +73,16 @@ const Countries = () => {
     lastIndex
   );
   return (
-    <div
-      className={`container mt-8 grid justify-center gap-y-[2.5rem] md:grid-cols-2 md:gap-x-[4.6875rem] md:gap-y-[4.6875rem] lg:grid-cols-4 lg:justify-between`}
-    >
-      {currentCountries.map((country: ICountry, i: number) => (
-        <Country country={country} key={i} />
-      ))}
-
+    <>
+      <div
+        className={`container mt-8 grid justify-center gap-y-[2.5rem] md:grid-cols-2 md:gap-x-[4.6875rem] md:gap-y-[4.6875rem] lg:grid-cols-4 lg:justify-between`}
+      >
+        {currentCountries.map((country: ICountry, i: number) => (
+          <Country country={country} key={i} />
+        ))}
+      </div>
       <Pagination />
-    </div>
+    </>
   );
 };
 

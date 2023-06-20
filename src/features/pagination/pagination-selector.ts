@@ -25,3 +25,8 @@ export const totalResultsSelector = createSelector(
   (state: RootState) => state.pagination.totalResults,
   (totalResults) => totalResults
 );
+
+export const currentPageSelector = createSelector(
+  (state: RootState) => state.pagination.currentPage,
+  (currentPage) => currentPage
+);
