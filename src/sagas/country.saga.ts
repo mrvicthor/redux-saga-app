@@ -9,7 +9,6 @@ import { setTotalPages } from "../features/pagination/pagination-slice";
 function* fetchCountry() {
   try {
     const response: AxiosResponse<ICountryResponse> = yield call(getCountry);
-    console.log("Country saga");
     yield put(setTotalPages());
     yield put(setCountryData(response.data));
     yield put(success());

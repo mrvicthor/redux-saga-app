@@ -17,10 +17,7 @@ const Pagination = () => {
     <ul className="mt-6 flex justify-center gap-3 border-red-400">
       {pageNumbers?.map((p) => (
         <li
-          onClick={() => {
-            console.log("Pagination clicked", p);
-            dispatch(setCurrentPage(p));
-          }}
+          onClick={() => dispatch(setCurrentPage(p))}
           className={`${
             darkTheme
               ? "bg-[#2B3844] text-[#f1f1f1] shadow-[0px_0px_7px_2px_rgba(0,0,0,0.0294384)]"
