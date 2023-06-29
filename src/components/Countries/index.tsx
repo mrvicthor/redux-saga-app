@@ -14,12 +14,9 @@ const Countries = () => {
   const countries = useSelector(countrySelector) ?? [];
   const searchQuery = useSelector(searchSelector) ?? "";
   const region = useSelector(regionSelector) ?? "";
-  const { totalResults, currentPage, countriesPerPage } =
-    useSelector(paginationSelector);
+  const { currentPage, countriesPerPage } = useSelector(paginationSelector);
   const lastIndex = currentPage * countriesPerPage;
   const firstIndex = lastIndex - countriesPerPage;
-  console.log(totalResults, firstIndex, lastIndex);
-  console.log(countries);
 
   // eslint-disable-next-line prefer-const
   let filteredCountries = countries as unknown;
